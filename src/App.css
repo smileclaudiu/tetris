@@ -1,33 +1,70 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#root {
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: column nowrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.area {
+  width: 300px;
+  height: 625px;
+  background-color: #eee;
+  border: 2px solid #aaa;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.linie {
+  height: 25px;
+}
+
+.empty, .active, .blocked {
+  display: inline-block;
+  border: 1px solid #ddd;
+  height: 23px;
+  width: 23px;
+}
+
+.active, .blocked {
+  background-color: #ccc;
+}
+
+#lostMessage {
+  display: none;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid rgb(117, 112, 112);
+  padding: 30px;
+  opacity: .7;
+  position: absolute;
+ }
+ #lostMessage button {
+   display: block;
+   margin: 20px auto 0;
+ }
+ #info {
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+   align-items: center;
+   width: 300px;
+   border: 2px solid #aaa;
+   border-bottom: none;
+   position: relative;
+ }
+ #level {
+   position: absolute;
+   top: 0;
+   right: 10px;
+ }
+
+ #streak {
+  position: absolute;
+  top: 0;
+  left: 10px;
+}
+#startButton {
+  height: 30px;
+  margin: 5px 0;
 }

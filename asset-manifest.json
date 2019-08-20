@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tetris/static/css/main.9b129dbd.chunk.css",
+    "main.js": "/tetris/static/js/main.d3486a23.chunk.js",
+    "main.js.map": "/tetris/static/js/main.d3486a23.chunk.js.map",
+    "runtime~main.js": "/tetris/static/js/runtime~main.61707ba2.js",
+    "runtime~main.js.map": "/tetris/static/js/runtime~main.61707ba2.js.map",
+    "static/js/2.75b69a17.chunk.js": "/tetris/static/js/2.75b69a17.chunk.js",
+    "static/js/2.75b69a17.chunk.js.map": "/tetris/static/js/2.75b69a17.chunk.js.map",
+    "index.html": "/tetris/index.html",
+    "precache-manifest.b30f417be69ad93d0fdc8f7e08c0c640.js": "/tetris/precache-manifest.b30f417be69ad93d0fdc8f7e08c0c640.js",
+    "service-worker.js": "/tetris/service-worker.js",
+    "static/css/main.9b129dbd.chunk.css.map": "/tetris/static/css/main.9b129dbd.chunk.css.map"
+  }
+}

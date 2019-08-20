@@ -6,22 +6,31 @@
   align-items: center;
 }
 
+#wrapper {
+  width: 375px;
+  height: 100%;
+  max-height: 660px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .area {
-  width: 300px;
-  height: 625px;
+  margin: auto;
+  width: 264px;
+  height: 550px;
   background-color: #eee;
   border: 2px solid #aaa;
 }
 
 .linie {
-  height: 25px;
+  height: 22px;
 }
 
 .empty, .active, .blocked {
   display: inline-block;
   border: 1px solid #ddd;
-  height: 23px;
-  width: 23px;
+  height: 20px;
+  width: 20px;
 }
 
 .active, .blocked {
@@ -29,13 +38,15 @@
 }
 
 #lostMessage {
+  margin: 200px 20px;
   display: none;
-  font-size: 20px;
+  max-width: 50%;
+  font-size: 14px;
   font-weight: bold;
   background-color: white;
   border-radius: 10px;
   border: 2px solid rgb(117, 112, 112);
-  padding: 30px;
+  padding: 12px;
   opacity: .7;
   position: absolute;
  }
@@ -44,16 +55,48 @@
    margin: 20px auto 0;
  }
  #info {
-   display: flex;
+  flex-grow: 1;
+  margin-top: 50px;
+   /* display: flex;
    flex-flow: row wrap;
    justify-content: center;
    align-items: center;
-   width: 300px;
    border: 2px solid #aaa;
    border-bottom: none;
-   position: relative;
+   position: relative; */
  }
- #level {
+ #level, #streak, #startButton {
+   margin: 10px;
+   display: block;
+ }
+ #startButton {
+  height: 30px;
+  width: 70%;
+  margin-top: 30px;
+}
+.displayBlockButton {
+  display: block;
+}
+
+#controls {
+  margin-top: 100px;
+}
+
+#controls button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: large;
+  margin: 0 auto;
+  user-select: none;
+  cursor: pointer;
+}
+
+#rightArrowButton {
+  float: right;
+}
+ 
+ /* #level {
    position: absolute;
    top: 0;
    right: 10px;
@@ -67,4 +110,4 @@
 #startButton {
   height: 30px;
   margin: 5px 0;
-}
+} */

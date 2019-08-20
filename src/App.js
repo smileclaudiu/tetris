@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './App.css';
 
 const shapes = [  [ [{x: 0, y: 6}, {x: 0, y: 5}, {x: 1, y: 5}, {x: 2, y: 5}],
@@ -46,6 +47,7 @@ class Tetris extends React.Component {
     ...initialState
     }
     this.timer = null;
+    this.timer2 = null;
     this.reevaluate = false;
   }
   
@@ -139,16 +141,16 @@ class Tetris extends React.Component {
     return active.some(cell => cell.x === 1)
   }
 
-  changeActive = e => {
-    
+  changeActive = (e, button = null) => {
+    console.log('changeactive')
     if (!this.state.isRunning) return;
-    if(e.key === "w" || e.key === "ArrowUp") this.changePosition();
+    if(e.key === "w" || e.key === "ArrowUp" || button === 'rotate') this.changePosition();
     var direction = null;
-    if(e.key === "a" || e.key === "ArrowLeft") {
+    if(e.key === "a" || e.key === "ArrowLeft" || button === 'left') {
       direction = -1;
-    } else if (e.key === "d" || e.key === "ArrowRight") {
+    } else if (e.key === "d" || e.key === "ArrowRight" || button === 'right') {
       direction = 1; 
-    } else if(e.key === "s" || e.key === "ArrowDown"){
+    } else if(e.key === "s" || e.key === "ArrowDown" || button === 'down'){
       direction = 0;
     } else return;
   
@@ -237,40 +239,46 @@ class Tetris extends React.Component {
 
   render() {
     return (
-      <>
-      <div id="info">
-        <span id="level">
-          Level: {this.state.level < 10 ? this.state.level : "Max (10)"}
-        </span>
-        <span id="streak">
-          Streak: {this.state.level < 10 ? this.state.streak :  "Max" }
-        </span>
-        <button id="startButton" onClick={() => this.startGame()}>
-          {this.state.isRunning ? "Pause" : "Start"}
-        </button>
+      <div id="wrapper">
+        <div id="lostMessage">
+          You lost. Click restart to play again!
+          <button onClick={() => this.restart()}>Restart</button>
+        </div>
+        <div className="area">
+          {
+            this.area.map((linie, indexX) => {
+              return(
+                <div className="linie" key={indexX}>
+                  {
+                    linie.map((coloana, indexY) => {
+                      return(
+                        <div className={this.getCellType(indexX, indexY)} key={indexX.toString() + ' ' + indexY.toString()}></div>
+                      );
+                    })
+                  }
+                </div>
+              );
+            })
+          }
+        </div>
+        <div id="info">
+          <span id="level">
+            Level: {this.state.level < 10 ? this.state.level : "Max (10)"}
+          </span>
+          <span id="streak">
+            Streak: {this.state.level < 10 ? this.state.streak :  "Max" }
+          </span>
+          <button id="startButton" onClick={() => this.startGame()}>
+            {this.state.isRunning ? "Pause" : "Start"}
+          </button>
+          {((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1)) && <div id="controls">
+            <button className="displayBlockButton" onMouseDown={ (e)=> setInterval(this.changeActive(e,'rotate'), 30)}>	&#9850;</button>
+            <button onTouchStart={(e) =>{this.timer2 = setInterval(() => this.changeActive(e, 'left'), 100); this.changeActive(e, 'left')}}  onTouchEnd={ () => clearInterval(this.timer2)} >&larr;</button>
+            <button onTouchStart={(e) =>{this.timer2 = setInterval(() => this.changeActive(e, 'right'), 100); this.changeActive(e, 'right')}} onTouchEnd={ () => clearInterval(this.timer2)}>&rarr;</button>
+            <button className="displayBlockButton" onTouchStart={(e) => this.timer2 = setInterval(() => this.changeActive(e, 'down'), 100)} onTouchEnd={ () => clearInterval(this.timer2)} >&darr;</button>
+          </div>}
+        </div>
       </div>
-      <div id="lostMessage">
-        You lost. Click restart to play again!
-        <button onClick={() => this.restart()}>Restart</button>
-      </div>
-      <div className="area">
-        {
-          this.area.map((linie, indexX) => {
-            return(
-              <div className="linie">
-                {
-                  linie.map((coloana, indexY) => {
-                    return(
-                      <div className={this.getCellType(indexX, indexY)}></div>
-                    );
-                  })
-                }
-              </div>
-            );
-          })
-        }
-      </div>
-      </>
     );
   }
   
